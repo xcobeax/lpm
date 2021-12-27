@@ -4,6 +4,9 @@ import TimeWhite from "./timeWhite.svg"
 import Mes from "./message.svg"
 import MesWhite from "./messageWhite.svg"
 import Ari from "./arri.jpg"
+import Moon from "./moon.png"
+import Sun from "./sun.png"
+import Tatang from "./tatang.jpg"
 
 const App = () => {
   const [dateState, setDateState] = useState(new Date());
@@ -26,7 +29,11 @@ const App = () => {
 
   }, [dateState])
   return (
-    <div className={`w-full max-h-screen h-screen transition-colors duration-1000 ${isMorning ? 'bg-white' : 'bg-black'} flex justify-center items-center`}>
+    <div className={`w-full overflow-hidden relative max-h-screen h-screen transition-colors duration-1000 ${isMorning ? 'bg-white' : 'bg-black'} flex justify-center items-center`}>
+      {!isMorning && (
+        <img src={Tatang} className='w-full object-cover absolute inset-0' alt='tatang' />
+      )}
+      <img src={isMorning ? Sun : Moon} className={`absolute right-10 top-10 ${isMorning ? 'w-36':'w-20'}`} alt='moon' />
       <Name isMorning={isMorning}/>
       <Messages isMorning={isMorning}/>
       <DateTime isMorning={isMorning}/>
@@ -36,7 +43,7 @@ const App = () => {
 
 const Name = ({isMorning}) => {
   return (
-    <div className={`font-serif text-xl tracking-wider md:text-3xl xl:text-5xl italic transition-colors duration-1000 ${isMorning ? 'text-black':'text-white'}`}>Lily Putri Marito</div>
+    <div className={`font-serif z-10 text-xl tracking-wider md:text-3xl xl:text-5xl italic transition-colors duration-1000 ${isMorning ? 'text-black':'text-white'}`}>Lily Putri Marito</div>
   )
 }
 
